@@ -1,30 +1,25 @@
 package com.aula42.listaDeProdutos.model;
 
-import lombok.*;
+import javax.persistence.Table;
 
+import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+
+
+@AllArgsConstructor
+@Getter
+@Setter
 @Data
 @Entity
-@Table(name = "produtos")
-public class ProdutosModel {
+@Table(name = "pagameento")
+@NoArgsConstructor
 
+public class PagamentosModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-
-    @Column(length = 50, nullable = false)
-    private String nome;
-
-    @Column(length = 10, nullable = false)
-    private BigDecimal valor;
-
-    @Column(name = "porcentagem_desconto",length = 10, nullable = false)
-    private BigDecimal descontoPorcentagem;
-
-    @Column(name = "valor_do_desconto",length = 10, nullable = false)
-    private BigDecimal valorDoDesconto;
 
     @Column(name = "valor_final",length = 10, nullable = false)
     private BigDecimal valorFinal;
@@ -32,12 +27,10 @@ public class ProdutosModel {
     @Column(length = 10, nullable = false)
     private BigDecimal diferencaValor;
 
-
     @Column(length = 50, nullable = false)
     private String status;
 
     @Column(length = 10, nullable = false)
     private BigDecimal valorAPagar;
-
 
 }

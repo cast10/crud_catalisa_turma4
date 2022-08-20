@@ -6,6 +6,7 @@ import com.aula42.listaDeProdutos.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,12 +26,12 @@ public class ProdutosService {
 
     public ProdutosModel cadastrar(ProdutosModel produtosModel, CalculoDesconto calculoDesconto){
         Double resultado = calculoDesconto.descontoProduto(produtosModel.getValor(), produtosModel.getDescontoPorcentagem());
-        Double resultadoFinal = calculoDesconto.valorFinal(produtosModel.getValor(), resultado);
+        BigDecimal resultadoFinal = BigDecimal.valueOf(calculoDesconto.valorFinal(produtosModel.getValor(), resultado));
         produtosModel.getCodigo();
         produtosModel.getNome();
         produtosModel.getValor();
         produtosModel.getDescontoPorcentagem();
-        produtosModel.setValorDoDesconto(resultado);
+        produtosModel.setValorDoDesconto(BigDecimal.valueOf(resultado));
         produtosModel.setValorFinal(resultadoFinal);
         return produtosRepository.save(produtosModel);
     }
