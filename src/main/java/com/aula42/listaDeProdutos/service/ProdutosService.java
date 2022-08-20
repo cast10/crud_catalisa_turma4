@@ -2,11 +2,10 @@ package com.aula42.listaDeProdutos.service;
 
 import com.aula42.listaDeProdutos.model.ProdutosModel;
 import com.aula42.listaDeProdutos.model.valoresProdutos.CalculoDesconto;
-import com.aula42.listaDeProdutos.repository.ProdutosRepository;
+import com.aula42.listaDeProdutos.repository.PagamentosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class ProdutosService {
 
     @Autowired
-    private ProdutosRepository produtosRepository;
+    private PagamentosRepository produtosRepository;
 
     public List<ProdutosModel> buscarTodos(){
         return produtosRepository.findAll();
@@ -25,14 +24,14 @@ public class ProdutosService {
     }
 
     public ProdutosModel cadastrar(ProdutosModel produtosModel, CalculoDesconto calculoDesconto){
-        Double resultado = calculoDesconto.descontoProduto(produtosModel.getValor(), produtosModel.getDescontoPorcentagem());
-        BigDecimal resultadoFinal = BigDecimal.valueOf(calculoDesconto.valorFinal(produtosModel.getValor(), resultado));
+        //Double resultado = calculoDesconto.descontoProduto(produtosModel.getValor(), produtosModel.getDescontoPorcentagem());
+     //   BigDecimal resultadoFinal = BigDecimal.valueOf(calculoDesconto.valorFinal(produtosModel.getValor(), resultado));
         produtosModel.getCodigo();
         produtosModel.getNome();
         produtosModel.getValor();
         produtosModel.getDescontoPorcentagem();
-        produtosModel.setValorDoDesconto(BigDecimal.valueOf(resultado));
-        produtosModel.setValorFinal(resultadoFinal);
+     // produtosModel.setValorDoDesconto(BigDecimal.valueOf(resultado));
+    // produtosModel.setValorFinal(resultadoFinal);
         return produtosRepository.save(produtosModel);
     }
 

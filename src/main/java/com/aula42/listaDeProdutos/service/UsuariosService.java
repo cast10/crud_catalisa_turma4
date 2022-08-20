@@ -1,8 +1,7 @@
 package com.aula42.listaDeProdutos.service;
 
-import com.aula42.listaDeProdutos.model.ProdutosModel;
 import com.aula42.listaDeProdutos.model.UsuariosModel;
-import com.aula42.listaDeProdutos.repository.UsuariosRepository;
+import com.aula42.listaDeProdutos.repository.RecebimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,7 @@ import java.util.Optional;
 public class UsuariosService {
 
     @Autowired
-    private UsuariosRepository usuariosRepository;
+    private RecebimentoRepository usuariosRepository;
 
     public List<UsuariosModel> buscarTodos(){
         return usuariosRepository.findAll();
