@@ -4,12 +4,12 @@ import com.aula.listadeFormaDePagamentos.model.RecebimentoModel;
 
 import java.math.BigDecimal;
 
- public class CalcularCartaoCredito  implements  ValorAReceber{
+public class CalcularCartaoDebito implements  ValorAReceber{
     @Override
-    public  BigDecimal calcular (RecebimentoModel recebimentoModel){
-        BigDecimal taxas = recebimentoModel.getValorAPagarReceber().multiply(new BigDecimal("0.037"));
+    public BigDecimal calcular (RecebimentoModel recebimentoModel){
+        BigDecimal taxas = recebimentoModel.getValorAPagarReceber().multiply(new BigDecimal("0.025"));
         return recebimentoModel.getValorAPagarReceber().subtract(taxas);
 
     }
- }
+}
 
