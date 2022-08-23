@@ -4,15 +4,7 @@ import com.aula.listadeFormaDePagamentos.model.RecebimentoModel;
 
 import java.math.BigDecimal;
 
-public class CalcularCartaoCredito {
+public interface ValorAReceber {
 
-    public BigDecimal calcular (RecebimentoModel recebimentoModel){
-
-
-
-
-    }
-
-
-
+    BigDecimal calcular (RecebimentoModel recebimentoModel);
 }
