@@ -1,5 +1,6 @@
 package com.aula.listadeFormaDePagamentos.service;
 
+import com.aula.listadeFormaDePagamentos.model.Receber.ValorAReceber;
 import com.aula.listadeFormaDePagamentos.model.RecebimentoModel;
 import com.aula.listadeFormaDePagamentos.repository.RecebimentoRepository;
 import com.aula.listadeFormaDePagamentos.service.Calculadora.CalculaValorPagarFactory;
@@ -29,7 +30,7 @@ public class RecebimentoService {
 
     public RecebimentoModel cadastrar(RecebimentoModel recebimentoModel) {
 
-        CalcularValorAReceber calcularValorAReceber = calculaValorPagarFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
+        ValorAReceber calcularValorAReceber = calculaValorPagarFactory.getalorAReceber(recebimentoModel.getMetodoPgto());
         recebimentoModel.setValorFinalReceber(calcularValorAReceber.calcular(recebimentoModel));
 
         //recebimentoModel.getCodigo();
@@ -40,7 +41,7 @@ public class RecebimentoService {
     }
 
     public RecebimentoModel alterar(RecebimentoModel recebimentoModel) {
-        CalcularValorAReceber calcularValorAReceber = calculaValorPagarFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
+        ValorAReceber calcularValorAReceber = calculaValorPagarFactory.getCalcularValorPago(recebimentoModel.get());
         recebimentoModel.setValorFinalReceber(calcularValorAReceber.calcular(recebimentoModel));
 
         //recebimentoModel.getCodigo();
