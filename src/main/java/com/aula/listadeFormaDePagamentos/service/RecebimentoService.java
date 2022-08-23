@@ -2,6 +2,7 @@ package com.aula.listadeFormaDePagamentos.service;
 
 import com.aula.listadeFormaDePagamentos.model.RecebimentoModel;
 import com.aula.listadeFormaDePagamentos.repository.RecebimentoRepository;
+import com.aula.listadeFormaDePagamentos.service.Calculadora.CalculaValorPagarFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,9 @@ public class RecebimentoService {
     private RecebimentoRepository recebimentoRepository;
 
     @Autowired
-    private RecebimentoRepository pagamentosRepository;
+    private CalculaValorPagarFactory calculaValorPagarFactory;
 
+    @Autowired
     public List<RecebimentoModel> buscarTodosValores() {
         return recebimentoRepository.findAll();
     }
@@ -27,7 +29,7 @@ public class RecebimentoService {
 
     public RecebimentoModel cadastrar(RecebimentoModel recebimentoModel) {
 
-        CalcularValorAReceber calcularValorAReceber = valorAReceberFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
+        CalcularValorAReceber calcularValorAReceber = calculaValorPagarFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
         recebimentoModel.setValorFinalReceber(calcularValorAReceber.calcular(recebimentoModel));
 
         //recebimentoModel.getCodigo();
@@ -38,7 +40,7 @@ public class RecebimentoService {
     }
 
     public RecebimentoModel alterar(RecebimentoModel recebimentoModel) {
-        CalcularValorAReceber calcularValorAReceber = valorAReceberFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
+        CalcularValorAReceber calcularValorAReceber = calculaValorPagarFactory.getCalcularValorAReceber(recebimentoModel.getMetodoPgto());
         recebimentoModel.setValorFinalReceber(calcularValorAReceber.calcular(recebimentoModel));
 
         //recebimentoModel.getCodigo();
@@ -46,11 +48,11 @@ public class RecebimentoService {
         //recebimentoModel.getValorTotalSemDesconto();
         //recebimentoModel.getValorAPagarReceber();
 
-        return pagamentosRepository.save(recebimentoModel);
+        return recebimentoRepository.save(recebimentoModel);
     }
 
     public void deletar(Long codigo) {
-        pagamentosRepository.deleteById(codigo);
+        recebimentoRepository.deleteById(codigo);
     }
 
 
