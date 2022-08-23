@@ -1,6 +1,6 @@
-package com.aula42.listaDeProdutos.repository;
+package com.aula.listadeFormaDePagamentos.repository;
 
-import com.aula42.listaDeProdutos.model.PagamentosModel;
+import com.aula.listadeFormaDePagamentos.model.PagamentosModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
